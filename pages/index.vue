@@ -3,7 +3,7 @@
     <v-row justify="center">
       <v-col cols="6">
         <v-card>
-          <v-card-title>Hello, Vuetify!！！！</v-card-title>
+          <v-card-title>Hello, world!！！！</v-card-title>
         </v-card>
       </v-col>
     </v-row>
