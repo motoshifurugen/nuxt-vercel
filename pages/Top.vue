@@ -3,7 +3,7 @@
         <div class="container">
             <div>
           <logo />
-          <h1 class="app-title">
+          <h1 class="app-title" style="color:#1B5E20;">
             ハッカソン・ダービー
           </h1>
           <h2 class="app-subtitle">
@@ -17,6 +17,15 @@
               x-large
             >
               登録する
+            </v-btn>
+            <v-btn
+              class="btn vote"
+              to="#"
+              color="amber darken-2"
+              x-large
+              dark
+            >
+              ランキング
             </v-btn>
             <v-btn
               class="btn vote"

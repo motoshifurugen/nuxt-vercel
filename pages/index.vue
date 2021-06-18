@@ -14,7 +14,7 @@ import Top from './Top.vue'
 export default {
   components: {
     Top
-  }
+  },
 }
 </script>
 
