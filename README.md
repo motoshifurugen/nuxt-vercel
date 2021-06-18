@@ -6,7 +6,7 @@
 
 このリポジトリのmasterブランチにマージする。
 
-Vercel（https://nuxtjs-bice-nine.vercel.app/)で動いている
+Vercel（ https://nuxtjs-bice-nine.vercel.app/ )で動いている
 
 
 ## 開発環境
