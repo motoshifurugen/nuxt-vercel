@@ -64,13 +64,13 @@ export default {
   font-size: 5em;
 }
 .app-subtitle {
-	font-size: 2em;
+  font-size: 2em;
 }
 .buttons {
-	margin: 2em 0;
+  margin: 2em 0;
 }
 .btn {
-  font-size: 1.5em;
+  font-size: 1.5em !important;
   margin: 0 1em;
 }
 </style>
