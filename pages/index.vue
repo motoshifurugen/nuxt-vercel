@@ -1,11 +1,20 @@
 <template>
-  <v-container>
-    <v-row justify="center">
-      <v-col cols="6">
-        <v-card>
-          <v-card-title>Hello, world!！！！</v-card-title>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+  <v-app>
+    <v-container>
+      <v-row justify="center">
+        <Top></Top>
+      </v-row>
+    </v-container>
+  </v-app>
 </template>
+
+<script>
+import Top from './Top.vue'
+
+export default {
+  components: {
+    Top
+  }
+}
+</script>
+
