@@ -4,7 +4,7 @@
 
 ## 本番環境
 
-このリポジトリのmainブランチにマージする。
+このリポジトリのmasterブランチにマージする。
 
 Vercel（https://nuxtjs-bice-nine.vercel.app/)で動いている
 
