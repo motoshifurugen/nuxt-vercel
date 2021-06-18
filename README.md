@@ -6,7 +6,11 @@
 
 このリポジトリのmasterブランチにマージする。
 
-Vercel（ https://nuxtjs-bice-nine.vercel.app/ )で動いている
+Vercelで動いている
+
+→ https://nuxtjs-bice-nine.vercel.app/
+
+→ https://nuxtjs-qv8yjp7h0-challengeable.vercel.app/vote (6/19確認)
 
 
 ## 開発環境
