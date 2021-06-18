@@ -1,13 +1,20 @@
 <template>
-  <div class="VueToNuxtLogo">
-    <div class="Triangle Triangle--two" />
-    <div class="Triangle Triangle--one" />
-    <div class="Triangle Triangle--three" />
-    <div class="Triangle Triangle--four" />
+  <div class="back-success">
+    <div class="VueToNuxtLogo">
+      <div class="Triangle Triangle--two" />
+      <div class="Triangle Triangle--one" />
+      <div class="Triangle Triangle--three" />
+      <div class="Triangle Triangle--four" />
+    </div>
   </div>
 </template>
 
 <style>
+.back-success {
+  background-color: #66BB6A;
+  padding: 1.5em;
+  border-radius: 7rem;
+}
 .VueToNuxtLogo {
   display: inline-block;
   animation: turn 2s linear forwards 1s;
@@ -29,7 +36,7 @@
 .Triangle--one {
   border-left: 105px solid transparent;
   border-right: 105px solid transparent;
-  border-bottom: 180px solid #41b883;
+  border-bottom: 180px solid #FDD835;
 }
 
 .Triangle--two {
@@ -38,7 +45,7 @@
   animation: goright 0.5s linear forwards 3.5s;
   border-left: 87.5px solid transparent;
   border-right: 87.5px solid transparent;
-  border-bottom: 150px solid #3b8070;
+  border-bottom: 150px solid #FFAB00;
 }
 
 .Triangle--three {
@@ -47,7 +54,7 @@
   animation: goright 0.5s linear forwards 3.5s;
   border-left: 70px solid transparent;
   border-right: 70px solid transparent;
-  border-bottom: 120px solid #35495e;
+  border-bottom: 120px solid #4E342E;
 }
 
 .Triangle--four {
@@ -56,7 +63,7 @@
   animation: godown 0.5s linear forwards 3s;
   border-left: 35px solid transparent;
   border-right: 35px solid transparent;
-  border-bottom: 60px solid #fff;
+  border-bottom: 60px solid #66BB6A;
 }
 
 @keyframes turn {
