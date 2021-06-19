@@ -178,6 +178,7 @@
 
 <script>
 import Header from "../components/Header.vue"
+import axios from 'axios'
 
 export default {
   components: {
@@ -303,6 +304,13 @@ export default {
       }
       return value.substring(0, length) + ommision;
     }
+  },
+  mounted () {
+    // axios
+    //   .get("#") // APIのURL
+    //   .then(response => {
+    //       this.teams = response.data;
+    //   });
   },
 }
 </script>
