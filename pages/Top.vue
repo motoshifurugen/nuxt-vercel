@@ -20,7 +20,7 @@
             </v-btn>
             <v-btn
               class="btn vote"
-              to="#"
+              to="/ranking"
               color="amber darken-2"
               x-large
               dark
