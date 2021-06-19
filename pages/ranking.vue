@@ -6,8 +6,6 @@
         <v-card>
           <v-card-title>　　　ーランキングページー</v-card-title>
         </v-card>
-      </v-col>
-    </v-row>
 
         <v-btn
           v-for="ranking in rankings"
@@ -20,6 +18,9 @@
           {{ ranking.name }}
           {{ ranking.point }}
         </v-btn>
+
+    </v-col>
+    </v-row>
     
   <div class="text-center">
     <v-rating
@@ -56,7 +57,7 @@
       v-model="rating"
       background-color="indigo lighten-3"
       color="indigo"
-      large
+    
     ></v-rating>
   </div>
   </v-app>
@@ -64,7 +65,7 @@
 
 <style>
 .container {
-  margin: 0 auto;
+  margin: 0 4em;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -72,8 +73,8 @@
   text-align: center;
 }
 .ranking-button{
- margin-bottom: 1em;
-
+ margin: 1em;
+ width: 100%;
 }
 
 </style>
