@@ -85,8 +85,9 @@
               v-bind="attrs"
               v-on="on"
               v-show="voteBtn"
+              large
             >
-              決定！
+              決定
             </v-btn>
           </template>
           <v-card>
@@ -161,6 +162,7 @@
 }
 .vote-team-card {
   font-weight: bold;
+  cursor: pointer;
 }
 .confirm-btn {
   font-size: 1em;
