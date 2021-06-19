@@ -139,6 +139,7 @@ export default {
       'Ruby on Rails',
       'Xamarin',
       'Angular',
+      'Docker',
     ],
     overlay: false,
   }),
