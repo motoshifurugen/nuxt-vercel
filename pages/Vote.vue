@@ -32,6 +32,7 @@
                   >
                   {{ team.name }}
                   {{ team.work }}
+                  {{ team.points }}
                     <v-btn
                       icon
                       dark
@@ -219,8 +220,16 @@ export default {
       }
     },
     vote () {
-      this.overlay = true
-      location.reload();
+      for (const team in this.voteTeams) {
+        team.points++
+      }
+        axios
+          .post("/api/teams/", this.voteTeams)
+          .then(response => {
+            this.overlay = true
+            alert('投票しました')
+            location.reload()
+          });
     }
   },
   filters: {
@@ -235,7 +244,7 @@ export default {
   },
   mounted () {
     axios
-      .get("https://hack-derby.azurewebsites.net/api/teams/?format=json") // APIのURL
+      .get("/api/teams/?format=json")
       .then(response => {
         this.teams = response.data
       });
