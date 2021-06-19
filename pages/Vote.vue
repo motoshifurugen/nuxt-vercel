@@ -10,7 +10,6 @@
         <div class="vote-description teal white--text">
           <h2>今回のハッカソンで賞を受賞するチームを予想して投票！</h2>
         </div>
-        <v-container class="pa-1">
           <v-item-group
             multiple
             class="vote-team-card-group"
@@ -46,7 +45,6 @@
               </v-col>
             </v-row>
           </v-item-group>
-        </v-container>
       </v-card>
     </div>
 
