@@ -25,12 +25,13 @@
               >
                 <v-item>
                   <v-img
-                    :src="`https://cdn.vuetifyjs.com/images/${team.src}`"
+                    :src="`https://cdn.vuetifyjs.com/images/backgrounds/bg.jpg`"
                     height="150"
                     class="text-right pa-2"
                     @click="addTeam(team.id);"
                   >
                   {{ team.name }}
+                  {{ team.work }}
                     <v-btn
                       icon
                       dark
@@ -190,80 +191,7 @@ export default {
     voteBtn: false,
     overlay: false,
     voteCount: 0,
-    teams: [
-      {
-        id: 1,
-        name: 'チームAチームAチームAチームAチームAチームAチームAチームAチームAチームAチームA',
-        src: 'backgrounds/bg.jpg',
-        selected: false
-      },
-      {
-        id: 2,
-        name: 'チームB',
-        src: 'backgrounds/md.jpg',
-        selected: false
-      },
-      {
-        id: 3,
-        name: 'チームC',
-        src: 'backgrounds/bg-2.jpg',
-        selected: false
-      },
-      {
-        id: 4,
-        name: 'チームD',
-        src: 'backgrounds/md2.jpg',
-        selected: false
-      },
-      {
-        id: 5,
-        name: 'チームE',
-        src: 'backgrounds/bg.jpg',
-        selected: false
-      },
-      {
-        id: 6,
-        name: 'チームF',
-        src: 'backgrounds/md.jpg',
-        selected: false
-      },
-      {
-        id: 7,
-        name: 'チームG',
-        src: 'backgrounds/bg-2.jpg',
-        selected: false
-      },
-      {
-        id: 8,
-        name: 'チームH',
-        src: 'backgrounds/md2.jpg',
-        selected: false
-      },
-      {
-        id: 9,
-        name: 'チームI',
-        src: 'backgrounds/bg.jpg',
-        selected: false
-      },
-      {
-        id: 10,
-        name: 'チームJ',
-        src: 'backgrounds/md.jpg',
-        selected: false
-      },
-      {
-        id: 11,
-        name: 'チームK',
-        src: 'backgrounds/bg-2.jpg',
-        selected: false
-      },
-      {
-        id: 12,
-        name: 'チームL',
-        src: 'backgrounds/md2.jpg',
-        selected: false
-      },
-    ],
+    teams: [],
     voteTeams: [],
   }),
   methods: {
@@ -306,11 +234,11 @@ export default {
     }
   },
   mounted () {
-    // axios
-    //   .get("#") // APIのURL
-    //   .then(response => {
-    //       this.teams = response.data;
-    //   });
+    axios
+      .get("https://hack-derby.azurewebsites.net/api/teams/?format=json") // APIのURL
+      .then(response => {
+        this.teams = response.data
+      });
   },
 }
 </script>
