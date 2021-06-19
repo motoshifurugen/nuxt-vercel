@@ -24,7 +24,7 @@
             required
           ></v-text-field>
 
-          <v-select
+          <!-- <v-select
             v-model="progLang"
             :items="languages"
             attach
@@ -40,7 +40,7 @@
             chips
             label="使用技術"
             multiple
-          ></v-select>
+          ></v-select> -->
 
           <v-btn
             color="error"
@@ -89,6 +89,7 @@
 
 <script>
 import Header from "../components/Header.vue"
+import axios from "axios"
 
 export default {
   components: { Header },
@@ -144,8 +145,17 @@ export default {
   methods: {
     submit () {
       if (this.$refs.form.validate()) {
-        this.overlay = true
-        location.reload();
+        const data = {
+          name: this.name,
+          work: this.portfolio
+        }
+        axios
+          .post("/api/teams/", data)
+          .then(response => {
+            this.overlay = true
+            alert('登録しました')
+            location.reload()
+          });
       }
     },
     reset () {
