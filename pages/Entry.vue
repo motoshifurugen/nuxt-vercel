@@ -3,6 +3,7 @@
     <Header />
     <v-container>
       <div class="entry-body">
+        <h1>チーム登録画面</h1>
         <v-form
           ref="form"
           v-model="valid"
@@ -88,6 +89,7 @@
 
 <script>
 import Header from "../components/Header.vue"
+import axios from "axios"
 
 export default {
   components: { Header },
@@ -137,14 +139,24 @@ export default {
       'Ruby on Rails',
       'Xamarin',
       'Angular',
+      'Docker',
     ],
     overlay: false,
   }),
   methods: {
     submit () {
       if (this.$refs.form.validate()) {
-        this.overlay = true
-        location.reload();
+        const data = {
+          name: this.name,
+          work: this.portfolio
+        }
+        axios
+          .post("/api/teams/", data)
+          .then(response => {
+            this.overlay = true
+            alert('登録しました')
+            location.reload()
+          });
       }
     },
     reset () {

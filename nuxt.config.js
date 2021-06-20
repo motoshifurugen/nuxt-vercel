@@ -31,7 +31,15 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: [
+    '@nuxtjs/axios',
+  ],
+  axios: {
+    proxy: true,
+  },
+  proxy: {
+    '/api/': { target: 'https://hack-derby.azurewebsites.net/api/', pathRewrite: {'^/api/': ''} }
+  },
   /*
    ** Build configuration
    */
