@@ -25,7 +25,7 @@
               >
                 <v-item>
                   <v-img
-                    :src="`https://cdn.vuetifyjs.com/images/${team.src}`"
+                    :src="`https://free-paper-texture.com/p/${team.src}`"
                     height="150"
                     class="text-right pa-2"
                     @click="addTeam(team.id);"
@@ -181,16 +181,11 @@ export default {
   components: {
     Header
   },
-  data: () => ({
-    footer: false,
-    dialog: false,
-    voteBtn: false,
-    overlay: false,
-    voteCount: 0,
-    teams: [
-      {
+  data: () => {
+    const a = [
+     {
         id: 1,
-        name: 'チームAチームAチームAチームAチームAチームAチームAチームAチームAチームAチームA',
+        name: 'チームA',
         src: 'backgrounds/bg.jpg',
         selected: false
       },
@@ -200,7 +195,7 @@ export default {
         src: 'backgrounds/md.jpg',
         selected: false
       },
-      {
+         {
         id: 3,
         name: 'チームC',
         src: 'backgrounds/bg-2.jpg',
@@ -260,9 +255,29 @@ export default {
         src: 'backgrounds/md2.jpg',
         selected: false
       },
-    ],
+    ]      
+    
+    return ({
+    footer: false,
+    dialog: false,
+    voteBtn: false,
+    overlay: false,
+    voteCount: 0,
+    teams: //[
+      a.map((a,i)=>{
+        if (i%2===0){
+          console.log("奇数",a.src)
+          a.src="p0401/p0401_m.jpg"
+        }else{
+          console.log("偶数",a.src)
+          a.src="p0126/p0126_s.jpg"
+        }
+        return a
+      }) , 
+
+   
     voteTeams: [],
-  }),
+  })},
   methods: {
     addTeam (teamId) {
       var selectTeams = this.teams.find((team) => team.id === teamId)

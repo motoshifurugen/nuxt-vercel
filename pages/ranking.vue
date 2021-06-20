@@ -1,25 +1,49 @@
 <template>
 　<v-app>
-
+    <Header />
+    <div class="ranking-body">
     <v-row justify="center">
       <v-col cols="6">
         <v-card>
-          <v-card-title>　　　ーランキングページー</v-card-title>
+          <v-card-title>
+            ランキングページ
+          </v-card-title>
         </v-card>
+      </v-col>
+    </v-row>
 
+<v-row justify="center">
+      <v-col cols="3">
+        <v-btn
+          v-for="number in numbers"
+          :key="number.id"
+          class="box-inner-btn ranking-button"
+          v-bind:color="number.color"
+          dark
+        >
+        <div class="name">
+          {{ number.title }}
+        </div>
+        </v-btn>
+      
+      </v-col>
+      
+      <v-col cols="6" >
         <v-btn
           v-for="ranking in rankings"
           :key="ranking.id"
-          class="mx-4 box-inner-btn ranking-button"
+          class="box-inner-btn ranking-button"
           color="orange darken-2"
           dark
-          @click="addTeam(ranking.id)"
         >
+        <div class="name">
           {{ ranking.name }}
           {{ ranking.point }}
+        </div>
         </v-btn>
-
-    </v-col>
+        </v-col>
+     
+    
     </v-row>
     
   <div class="text-center">
@@ -60,21 +84,28 @@
     
     ></v-rating>
   </div>
+  </div>
   </v-app>
 </template>
 
+
 <style>
-.container {
-  margin: 0 4em;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+.title{
+ text-align: center;
 }
+ 
+.ranking-body{
+  margin: 80px;
+}
+
 .ranking-button{
+pointer-events: none;
  margin: 1em;
  width: 100%;
+ padding: 2em !important;
+}
+.name{
+  font-size: 2em;
 }
 
 </style>
@@ -85,6 +116,24 @@ import Header from "../components/Header.vue"
 export default {
   components: { Header },
   data: () => ({
+  numbers: [
+      {
+        id: 1,
+        title: '1位',
+        color: 'red darken-1'
+      },
+      {
+        id: 2,
+        title: '2位',
+        color: 'blue darken-1'
+      },
+      {
+        id: 3,
+        title: '3位',
+        color: 'amber'
+      },
+  ],
+
 　rankings: [
       {
         id: 1,
