@@ -10,7 +10,6 @@
         <div class="vote-description teal white--text">
           <h2>今回のハッカソンで賞を受賞するチームを予想して投票！</h2>
         </div>
-        <v-container class="pa-1">
           <v-item-group
             multiple
             class="vote-team-card-group"
@@ -30,9 +29,7 @@
                     class="text-right pa-2"
                     @click="addTeam(team.id);"
                   >
-                  {{ team.name }}
-                  {{ team.work }}
-                  {{ team.points }}
+                    {{ team.name }}
                     <v-btn
                       icon
                       dark
@@ -40,13 +37,16 @@
                       <v-icon>
                         {{ (team.selected === true) ? 'mdi-heart' : 'mdi-heart-outline' }}
                       </v-icon>
-                    </v-btn>
+                    </v-btn><br>
+                    <div style="text-align:left">
+                    【作成したアプリ】{{ team.work }}<br>
+                    【ポイント】{{ team.points }}
+                    </div>
                   </v-img>
                 </v-item>
               </v-col>
             </v-row>
           </v-item-group>
-        </v-container>
       </v-card>
     </div>
 
@@ -67,7 +67,6 @@
           class="mx-4 box-inner-btn"
           color="orange darken-2"
           dark
-          @click="addTeam(voteTeam.id)"
         >
           {{ voteTeam.name | truncate }}
         </v-btn>
@@ -174,6 +173,7 @@
   text-align: center;
   font-size: 0.75em;
   margin: 5px 0;
+  pointer-events: none;
 }
 </style>
 
@@ -220,16 +220,21 @@ export default {
       }
     },
     vote () {
-      for (const team in this.voteTeams) {
-        team.points++
-      }
+      // うまくいかない
+      this.voteTeams.forEach(function(val, key) {
+        val.points++
+        const data = {
+          points: val.points,
+        }
         axios
-          .post("/api/teams/", this.voteTeams)
+          .put("/api/teams/"+val.id, data)
           .then(response => {
-            this.overlay = true
-            alert('投票しました')
-            location.reload()
-          });
+            console.log(key+':'+response)
+          })
+          .catch(error =>  {
+            console.log(error)
+          })
+      })
     }
   },
   filters: {
