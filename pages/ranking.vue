@@ -5,9 +5,13 @@
     <v-row justify="center">
       <v-col cols="6">
         <v-card>
-          <v-card-title>
-            ランキングページ
-          </v-card-title>
+     <v-btn block>
+     <div class="ranking-title">
+      <v-col cols="3">
+     ランキングページ
+     </v-col>
+     </div>
+     </v-btn>
         </v-card>
       </v-col>
     </v-row>
@@ -46,44 +50,6 @@
     
     </v-row>
     
-  <div class="text-center">
-    <v-rating
-      v-model="rating"
-      background-color="purple lighten-3"
-      color="purple"
-      large
-    ></v-rating>
-    <v-rating
-      v-model="rating"
-      background-color="pink lighten-3"
-      color="pink"
-      large
-    ></v-rating>
-    <v-rating
-      v-model="rating"
-      background-color="orange lighten-3"
-      color="orange"
-      large
-    ></v-rating>
-    <v-rating
-      v-model="rating"
-      background-color="green lighten-3"
-      color="green"
-      large
-    ></v-rating>
-    <v-rating
-      v-model="rating"
-      background-color="red lighten-3"
-      color="red"
-      large
-    ></v-rating>
-    <v-rating
-      v-model="rating"
-      background-color="indigo lighten-3"
-      color="indigo"
-    
-    ></v-rating>
-  </div>
   </div>
   </v-app>
 </template>
@@ -92,14 +58,23 @@
 <style>
 .title{
  text-align: center;
+ pointer-events: none;
 }
- 
+
+.ranking-title{
+  color:"orange darken-2";
+  pointer-events: none;
+  font-size: 1.5em;
+  padding: 2em;
+}
+
 .ranking-body{
+  pointer-events: none;
   margin: 80px;
 }
 
 .ranking-button{
-pointer-events: none;
+ pointer-events: none;
  margin: 1em;
  width: 100%;
  padding: 2em !important;
