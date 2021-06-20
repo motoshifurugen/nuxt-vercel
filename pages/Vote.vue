@@ -186,6 +186,7 @@ export default {
   components: {
     Header
   },
+  data: () => ({
     footer: false,
     dialog: false,
     voteBtn: false,
@@ -238,7 +239,7 @@ export default {
           })
           .catch(error =>  {
             console.log(error)
-          })
+          });
       })
       this.overlay = true
       if (this.itemCount === 5) {
