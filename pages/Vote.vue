@@ -10,7 +10,6 @@
         <div class="vote-description teal white--text">
           <h2>今回のハッカソンで賞を受賞するチームを予想して投票！</h2>
         </div>
-        <v-container class="pa-1">
           <v-item-group
             multiple
             class="vote-team-card-group"
@@ -25,12 +24,12 @@
               >
                 <v-item>
                   <v-img
-                    :src="`https://free-paper-texture.com/p/${team.src}`"
+                    :src="`https://cdn.vuetifyjs.com/images/backgrounds/bg.jpg`"
                     height="150"
                     class="text-right pa-2"
                     @click="addTeam(team.id);"
                   >
-                  {{ team.name }}
+                    {{ team.name }}
                     <v-btn
                       icon
                       dark
@@ -38,13 +37,16 @@
                       <v-icon>
                         {{ (team.selected === true) ? 'mdi-heart' : 'mdi-heart-outline' }}
                       </v-icon>
-                    </v-btn>
+                    </v-btn><br>
+                    <div style="text-align:left">
+                    【作成したアプリ】{{ team.work }}<br>
+                    【ポイント】{{ team.points }}
+                    </div>
                   </v-img>
                 </v-item>
               </v-col>
             </v-row>
           </v-item-group>
-        </v-container>
       </v-card>
     </div>
 
@@ -65,7 +67,6 @@
           class="mx-4 box-inner-btn"
           color="orange darken-2"
           dark
-          @click="addTeam(voteTeam.id)"
         >
           {{ voteTeam.name | truncate }}
         </v-btn>
@@ -85,8 +86,9 @@
               v-bind="attrs"
               v-on="on"
               v-show="voteBtn"
+              large
             >
-              決定！
+              決定
             </v-btn>
           </template>
           <v-card>
@@ -161,6 +163,7 @@
 }
 .vote-team-card {
   font-weight: bold;
+  cursor: pointer;
 }
 .confirm-btn {
   font-size: 1em;
@@ -170,114 +173,28 @@
   text-align: center;
   font-size: 0.75em;
   margin: 5px 0;
+  pointer-events: none;
 }
 </style>
 
 
 <script>
 import Header from "../components/Header.vue"
+import axios from 'axios'
 
 export default {
   components: {
     Header
   },
-  data: () => {
-    const a = [
-     {
-        id: 1,
-        name: 'チームA',
-        src: 'backgrounds/bg.jpg',
-        selected: false
-      },
-      {
-        id: 2,
-        name: 'チームB',
-        src: 'backgrounds/md.jpg',
-        selected: false
-      },
-         {
-        id: 3,
-        name: 'チームC',
-        src: 'backgrounds/bg-2.jpg',
-        selected: false
-      },
-      {
-        id: 4,
-        name: 'チームD',
-        src: 'backgrounds/md2.jpg',
-        selected: false
-      },
-      {
-        id: 5,
-        name: 'チームE',
-        src: 'backgrounds/bg.jpg',
-        selected: false
-      },
-      {
-        id: 6,
-        name: 'チームF',
-        src: 'backgrounds/md.jpg',
-        selected: false
-      },
-      {
-        id: 7,
-        name: 'チームG',
-        src: 'backgrounds/bg-2.jpg',
-        selected: false
-      },
-      {
-        id: 8,
-        name: 'チームH',
-        src: 'backgrounds/md2.jpg',
-        selected: false
-      },
-      {
-        id: 9,
-        name: 'チームI',
-        src: 'backgrounds/bg.jpg',
-        selected: false
-      },
-      {
-        id: 10,
-        name: 'チームJ',
-        src: 'backgrounds/md.jpg',
-        selected: false
-      },
-      {
-        id: 11,
-        name: 'チームK',
-        src: 'backgrounds/bg-2.jpg',
-        selected: false
-      },
-      {
-        id: 12,
-        name: 'チームL',
-        src: 'backgrounds/md2.jpg',
-        selected: false
-      },
-    ]      
-    
-    return ({
     footer: false,
     dialog: false,
     voteBtn: false,
     overlay: false,
     voteCount: 0,
-    teams: //[
-      a.map((a,i)=>{
-        if (i%2===0){
-          console.log("奇数",a.src)
-          a.src="p0401/p0401_m.jpg"
-        }else{
-          console.log("偶数",a.src)
-          a.src="p0126/p0126_s.jpg"
-        }
-        return a
-      }) , 
-
-   
+    teams: [],
     voteTeams: [],
-  })},
+    itemCount: 0
+  }),
   methods: {
     addTeam (teamId) {
       var selectTeams = this.teams.find((team) => team.id === teamId)
@@ -303,8 +220,31 @@ export default {
       }
     },
     vote () {
+      this.voteTeams.forEach(function(val, key) {
+        val.points++
+        const data = {
+          id: val.id,
+          name: val.name,
+          work: val.work,
+          points: val.points,
+          langs: val.langs,
+          techs: val.techs
+        }
+        axios
+          .put("/api/teams/"+val.id+"/", data)
+          .then(response => {
+            console.log(key+':'+response)
+            this.itemCount++;
+          })
+          .catch(error =>  {
+            console.log(error)
+          })
+      })
       this.overlay = true
-      location.reload();
+      if (this.itemCount === 5) {
+        alert('登録しました')
+        location.reload()
+      }
     }
   },
   filters: {
@@ -316,6 +256,13 @@ export default {
       }
       return value.substring(0, length) + ommision;
     }
+  },
+  mounted () {
+    axios
+      .get("/api/teams/?format=json")
+      .then(response => {
+        this.teams = response.data
+      });
   },
 }
 </script>
