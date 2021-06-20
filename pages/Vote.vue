@@ -186,7 +186,6 @@ export default {
   components: {
     Header
   },
-  data: () => ({
     footer: false,
     dialog: false,
     voteBtn: false,
