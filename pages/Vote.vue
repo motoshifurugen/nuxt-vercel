@@ -194,6 +194,7 @@ export default {
     voteCount: 0,
     teams: [],
     voteTeams: [],
+    itemCount: 0
   }),
   methods: {
     addTeam (teamId) {
@@ -220,21 +221,31 @@ export default {
       }
     },
     vote () {
-      // うまくいかない
       this.voteTeams.forEach(function(val, key) {
         val.points++
         const data = {
+          id: val.id,
+          name: val.name,
+          work: val.work,
           points: val.points,
+          langs: val.langs,
+          techs: val.techs
         }
         axios
-          .put("/api/teams/"+val.id, data)
+          .put("/api/teams/"+val.id+"/", data)
           .then(response => {
             console.log(key+':'+response)
+            this.itemCount++;
           })
           .catch(error =>  {
             console.log(error)
           })
       })
+      this.overlay = true
+      if (this.itemCount === 5) {
+        alert('登録しました')
+        location.reload()
+      }
     }
   },
   filters: {
