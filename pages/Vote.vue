@@ -223,10 +223,16 @@ export default {
       // うまくいかない
       this.voteTeams.forEach(function(val, key) {
         val.points++
+        const data = {
+          points: val.points,
+        }
         axios
-          .post("/api/teams/"+val.id, val)
+          .put("/api/teams/"+val.id, data)
           .then(response => {
-            console.log(key+response)
+            console.log(key+':'+response)
+          })
+          .catch(error =>  {
+            console.log(error)
           })
       })
     }

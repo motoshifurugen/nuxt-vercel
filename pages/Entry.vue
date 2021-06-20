@@ -24,7 +24,7 @@
             required
           ></v-text-field>
 
-          <!-- <v-select
+          <v-select
             v-model="progLang"
             :items="languages"
             attach
@@ -40,7 +40,7 @@
             chips
             label="使用技術"
             multiple
-          ></v-select> -->
+          ></v-select>
 
           <v-btn
             color="error"
